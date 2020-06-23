@@ -41,7 +41,7 @@ class AuthController extends Controller
         $this->badRequestCode = 400;
         $this->unauthorized = 'Unauthorized';
         $this->unauthorizedCode = 401;
-        $this->accepted = 'Accept';
+        $this->accepted = 'Accepted';
         $this->acceptedCode = 200;
         $this->internalError = 'Internal Error';
         $this->internalErrorCode = 500;
