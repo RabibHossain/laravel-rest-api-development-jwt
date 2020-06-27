@@ -33,7 +33,7 @@ class TaskController extends Controller
         $this->badRequestCode = 400;
         $this->unauthorized = 'Unauthorized';
         $this->unauthorizedCode = 401;
-        $this->accepted = 'Accept';
+        $this->accepted = 'Accepted';
         $this->acceptedCode = 200;
         $this->internalError = 'Internal Error';
         $this->internalErrorCode = 500;
@@ -156,8 +156,10 @@ class TaskController extends Controller
         $title = $request->title;
         $details = $request->details;
 
-        if (Task::where('id', $id)->exists()) {
-            $task = Task::where('id', $id)->update(['title' => $title, 'details' => $details]);
+        $taskId = Task::where('id', $id);
+
+        if ($taskId->exists()) {
+            $task = $taskId->update(['title' => $title, 'details' => $details]);
             if ($task) {
                 
                 $response = [
@@ -181,8 +183,9 @@ class TaskController extends Controller
      */
     public function destroy($id)
     {
-        if (Task::where('id', $id)->exists()) {
-            Task::where('id', $id)->delete();
+        $taskId = Task::where('id', $id);
+        if ($taskId->exists()) {
+            $taskId->delete();
             $response = [
                 'deleted' => $id
             ];
